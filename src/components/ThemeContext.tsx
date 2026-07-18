@@ -13,28 +13,15 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
     const [isDark, setIsDark] = useState(false);
 
+    // Sync React state with whatever theme the <head> script already applied
     useEffect(() => {
-        const alreadyDark = document.documentElement.classList.contains("dark");
-        if (alreadyDark) {
-            // eslint-disable-next-line react-hooks/set-state-in-effect
-            setIsDark(true);
-        } else {
-            const stored = localStorage.getItem("theme");
-            const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-            const dark = stored ? stored === "dark" : prefersDark;
-            if (dark) {
-                setIsDark(true);
-                document.documentElement.classList.add("dark");
-            }
-        }
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        setIsDark(document.documentElement.classList.contains("dark"));
     }, []);
-
-    useEffect(() => {
-        document.documentElement.classList.toggle("dark", isDark);
-    }, [isDark]);
 
     const setTheme = (dark: boolean) => {
         setIsDark(dark);
+        document.documentElement.classList.toggle("dark", dark);
         localStorage.setItem("theme", dark ? "dark" : "light");
     };
 
