@@ -1,1 +1,14 @@
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@import 'swiper/css';
+@import 'swiper/css/pagination';
+@import 'swiper/css/effect-fade';
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+html {
+  scroll-behavior: smooth;
+}
