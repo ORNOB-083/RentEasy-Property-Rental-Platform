@@ -4,29 +4,29 @@ import { createContext, useContext, useState, useEffect, ReactNode } from "react
 
 type ThemeContextType = {
     isDark: boolean;
-    setTheme: (dark: boolean) => void;
+    toggleTheme: () => void;
 };
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
+    // Lazy initializer: read the class your <head> script already applied.
+    // Safe because nothing conditionally renders based on this — see note below.
+    const [isDark, setIsDark] = useState(() => {
+        if (typeof document === "undefined") return false;
+        return document.documentElement.classList.contains("dark");
+    });
 
-    const [isDark, setIsDark] = useState(false);
-
-    // Sync React state with whatever theme the <head> script already applied
+    // Single place that ever mutates the DOM/localStorage for theme.
     useEffect(() => {
-        // eslint-disable-next-line react-hooks/set-state-in-effect
-        setIsDark(document.documentElement.classList.contains("dark"));
-    }, []);
+        document.documentElement.classList.toggle("dark", isDark);
+        localStorage.setItem("theme", isDark ? "dark" : "light");
+    }, [isDark]);
 
-    const setTheme = (dark: boolean) => {
-        setIsDark(dark);
-        document.documentElement.classList.toggle("dark", dark);
-        localStorage.setItem("theme", dark ? "dark" : "light");
-    };
+    const toggleTheme = () => setIsDark((prev) => !prev);
 
     return (
-        <ThemeContext.Provider value={{ isDark, setTheme }}>
+        <ThemeContext.Provider value={{ isDark, toggleTheme }}>
             {children}
         </ThemeContext.Provider>
     );
