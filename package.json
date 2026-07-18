@@ -1,0 +1,42 @@
+{
+  "name": "renteasy",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "@gravity-ui/icons": "^2.20.0",
+    "@stripe/stripe-js": "^9.10.0",
+    "axios": "^1.18.1",
+    "better-auth": "^1.6.23",
+    "framer-motion": "^12.42.2",
+    "jsonwebtoken": "^9.0.3",
+    "lottie-react": "^2.4.1",
+    "lucide-react": "^1.25.0",
+    "mongodb": "^7.5.0",
+    "motion": "^12.42.2",
+    "next": "^16.2.10",
+    "nextjs-toploader": "^3.9.17",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "react-hot-toast": "^2.6.0",
+    "react-icons": "^5.7.0",
+    "recharts": "^3.9.2",
+    "stripe": "^22.3.2",
+    "swiper": "^14.0.5"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.10",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}
