@@ -47,11 +47,20 @@ export default function RegisterForm({ redirectTo = "/" }: { redirectTo?: string
     };
 
     const handleGoogleSignUp = async () => {
+        const toastId = toast.loading("Redirecting to Google...");
         try {
-            await signIn.social({ provider: "google", callbackURL: redirectTo });
+            const separator = redirectTo.includes("?") ? "&" : "?";
+            const { error } = await signIn.social({
+                provider: "google",
+                callbackURL: `${redirectTo}${separator}auth=google`,
+            });
+
+            if (error) {
+                throw new Error(error.message);
+            }
         } catch (err) {
             const message = err instanceof Error ? err.message : "Google authentication failed. Please try again.";
-            toast.error(message);
+            toast.error(message, { id: toastId });
         }
     };
 

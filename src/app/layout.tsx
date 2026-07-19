@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { Geist, Geist_Mono } from "next/font/google";
 import NextTopLoader from "nextjs-toploader";
 import { Toaster } from "react-hot-toast";
 import Navbar from "@/components/Navbar";
+import AuthToastListener from "@/components/AuthToastListener";
 import { ThemeProvider } from "@/components/ThemeContext";
 import "./globals.css";
 import Footer from "@/components/Footer";
@@ -51,13 +53,16 @@ export default function RootLayout({
       </head>
       <body className="min-h-full flex flex-col bg-[#FAF9FC] text-[#1A1528] dark:bg-[#0D0716] dark:text-[#F5F3FF] transition-colors duration-300">
         <NextTopLoader color="#9B4DCA" showSpinner={false} />
+        <Suspense fallback={null}>
+          <AuthToastListener />
+        </Suspense>
         <ThemeProvider>
           <Navbar />
           <main className="flex-1">{children}</main>
           <Footer />
         </ThemeProvider>
         <Toaster
-          position="top-right"
+          position="top-center"
           toastOptions={{
             style: {
               background: "#FFFFFF",

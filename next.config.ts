@@ -1,50 +1,33 @@
 // next.config.ts
-import type { NextConfig } from 'next';
+import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
-      { protocol: 'https', hostname: '**', },
-      // Unsplash
       {
-        protocol: 'https', hostname: 'images.unsplash.com', pathname: '/**',
-      },
-      // BING 
-      {
-        protocol: 'https', hostname: 'th.bing.com', pathname: '/**',
+        protocol: "https",
+        hostname: "lh3.googleusercontent.com",
       },
       {
-        protocol: 'https', hostname: 'www.bing.com', pathname: '/**',
+        protocol: "https",
+        hostname: "i.ibb.co",
       },
       {
-        protocol: 'https', hostname: 'bing.com', pathname: '/**',
+        protocol: "https",
+        hostname: "res.cloudinary.com",
       },
-
-      // Google / Google Images
-      { protocol: 'https', hostname: 'lh3.googleusercontent.com', pathname: '/**' },
-      { protocol: 'https', hostname: 'google.com', pathname: '/**' },
-
-      // GIPHY
-      { protocol: 'https', hostname: 'media.giphy.com', pathname: '/**' },
-
-      // Imgur
-      { protocol: 'https', hostname: 'i.imgur.com', pathname: '/**' },
-
-      // Cloudinary
-      { protocol: 'https', hostname: 'res.cloudinary.com', pathname: '/**' },
-
-      // Wikipedia / Wikimedia
-      { protocol: 'https', hostname: 'upload.wikimedia.org', pathname: '/**' },
-
-      // Placeholder services
-      { protocol: 'https', hostname: 'via.placeholder.com', pathname: '/**' },
-      { protocol: 'https', hostname: 'ui-avatars.com', pathname: '/**' },
-      { protocol: 'https', hostname: 'ui-avatars.com', pathname: '/**' },
-      { protocol: 'https', hostname: 'avatars.githubusercontent.com', pathname: '/**' },
-      { protocol: 'https', hostname: 'lh3.googleusercontent.com', pathname: '/**' },
-      { protocol: 'https', hostname: 'gravatar.com', pathname: '/**' },
-      { protocol: 'https', hostname: 'avatar.vercel.sh', pathname: '/**' },
-      { protocol: 'https', hostname: 'cloudflare-ipfs.com', pathname: '/**' },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+      },
+      {
+        protocol: "https",
+        hostname: "avatars.githubusercontent.com",
+      },
+      {
+        protocol: "https",
+        hostname: "ui-avatars.com",
+      },
     ],
   },
 };
