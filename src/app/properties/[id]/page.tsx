@@ -7,7 +7,7 @@ import api from "@/lib/axios";
 import { useSession } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
-// import BookingModal from "@/components/BookingModal"; 
+import BookingModal from "@/components/BookingModal"; 
 
 interface Property {
     _id: string;
@@ -213,6 +213,14 @@ export default function PropertyDetailsPage({ params }: { params: Promise<{ id: 
                     </div>
                 </div>
             </div>
+
+            {showBookingModal && (
+                <BookingModal
+                    propertyId={property._id}
+                    propertyTitle={property.title}
+                    onClose={() => setShowBookingModal(false)}
+                />
+            )}
         </div>
     );
 }
